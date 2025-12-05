@@ -27,11 +27,11 @@
       </div>
     </section>
 
-    <!-- CATÁLOGO (cargado desde "base de datos" en JS) -->
+    <!-- CATÁLOGO -->
     <section id="andamios" class="section">
       <h2>Catálogo de Andamios</h2>
       <p class="section-desc">
-        Catalogo de andamios certificados y galvanizados por la UNI
+        catalogo de los andamios galvanizados
       </p>
 
       <div id="andamios-list" class="grid-andamios">
@@ -61,6 +61,26 @@
           </select>
         </div>
 
+        <!-- 🔥 CAMPO NUEVO AÑADIDO (CANTIDAD) -->
+        <div class="field">
+          <label for="cantidad">Cantidad de andamios</label>
+          <select id="cantidad" required>
+            <option value="1">1 andamio</option>
+            <option value="2">2 andamios</option>
+            <option value="3">3 andamios</option>
+            <option value="4">4 andamios</option>
+            <option value="5">5 andamios</option>
+            <option value="6">6 andamios</option>
+            <option value="7">7 andamios</option>
+            <option value="8">8 andamios</option>
+            <option value="9">9 andamios</option>
+            <option value="10">10 andamios</option>
+            <option value="11">11 andamios</option>
+            <option value="12">12 andamios</option>
+          </select>
+        </div>
+        <!-- 🔥 FIN DE CAMPO NUEVO -->
+
         <div class="field">
           <label for="dias">Días de alquiler</label>
           <input type="number" id="dias" min="1" value="1" required />
@@ -71,7 +91,7 @@
       </form>
     </section>
 
-    <!-- LISTADO DE RESERVAS (solo visual, desde JS) -->
+    <!-- LISTADO DE RESERVAS -->
     <section class="section">
       <h2>Reserva de los andamios galvanizados.</h2>
       <p class="section-desc">
@@ -98,4 +118,3 @@
   <script src="andamios.js"></script>
 </body>
 </html>
-
