@@ -32,7 +32,7 @@ const DB_ANDAMIOS = [
     descripcion: "Niveladores galvanizados, certificados por la UNI.",
     precioDia: 6.0,
     stock: 40,
-    imagen: "andamios/niveladores.png"
+    imagen: "andamios/niveladores.jpg"
   },
   {
     id: 5,
@@ -40,17 +40,30 @@ const DB_ANDAMIOS = [
     descripcion: "Escaleras telescópicas para trabajos de pintura y acabados.",
     precioDia: 8.0,
     stock: 40,
-    imagen: "andamios/escalera.png"
+    imagen: "andamios/escalera.jpg"
   }
 ];
 
-// "Base de datos" simulada para reservas
 let DB_RESERVAS = [];
 
-// NÚMERO DE WHATSAPP DONDE LLEGARÁ LA COTIZACIÓN
 const WHATSAPP_NUMBER = "51958799539";
 
-// Cargar catálogo de andamios
+// 🔹 NUEVA FUNCIÓN: llenar la cantidad de andamios del 1 al 12
+function renderCantidadAndamios() {
+  const selectCantidad = document.getElementById("cantidad");
+  if (!selectCantidad) return; // por si acaso
+
+  selectCantidad.innerHTML = "";
+
+  for (let i = 1; i <= 12; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = `${i} andamio${i > 1 ? "s" : ""}`;
+    selectCantidad.appendChild(option);
+  }
+}
+
+// Cargar catálogo
 function renderAndamios() {
   const lista = document.getElementById("andamios-list");
   const select = document.getElementById("andamioSelect");
@@ -62,11 +75,7 @@ function renderAndamios() {
     const card = document.createElement("article");
     card.className = "card-andamio";
     card.innerHTML = `
-      <img 
-        src="${item.imagen}" 
-        alt="${item.nombre}" 
-        class="card-andamio__img"
-      />
+      <img src="${item.imagen}" alt="${item.nombre}" class="card-andamio__img"/>
       <h3>${item.nombre}</h3>
       <p>${item.descripcion}</p>
       <p class="precio">S/ ${item.precioDia.toFixed(2)} por día</p>
@@ -81,7 +90,7 @@ function renderAndamios() {
   });
 }
 
-// Mostrar reservas en pantalla
+// Mostrar reservas
 function renderReservas() {
   const contenedor = document.getElementById("reservas-list");
   contenedor.innerHTML = "";
@@ -97,7 +106,7 @@ function renderReservas() {
     item.innerHTML = `
       <strong>${reserva.nombre}</strong> – ${reserva.telefono}<br/>
       Andamio: ${reserva.nombreAndamio}<br/>
-      Cantidad: ${reserva.cantidad}<br/>
+      Cantidad: ${reserva.cantidad} unidad(es)<br/>
       Días: ${reserva.dias}<br/>
       Total aprox: S/ ${reserva.total.toFixed(2)}
     `;
@@ -105,7 +114,7 @@ function renderReservas() {
   });
 }
 
-// Guardar reserva + enviar WhatsApp
+// Guardar reserva
 function manejarFormularioReserva(event) {
   event.preventDefault();
 
@@ -131,7 +140,6 @@ function manejarFormularioReserva(event) {
 
   const total = dias * cantidad * andamio.precioDia;
 
-  // Registro local en la web
   const nuevaReserva = {
     nombre,
     telefono,
@@ -145,7 +153,6 @@ function manejarFormularioReserva(event) {
   DB_RESERVAS.push(nuevaReserva);
   renderReservas();
 
-  // WhatsApp
   const texto = `
 Nueva cotización solicitada
 
@@ -154,7 +161,7 @@ Teléfono: ${telefono}
 
 Equipo solicitado:
 - ${andamio.nombre}
-- Cantidad: ${cantidad} unidad(es)
+- Cantidad: ${cantidad} andamio(s)
 - Precio por día: S/ ${andamio.precioDia.toFixed(2)}
 - Días de alquiler: ${dias}
 
@@ -180,5 +187,9 @@ Por favor, confirmar disponibilidad y coordinar entrega.
 document.addEventListener("DOMContentLoaded", () => {
   renderAndamios();
   renderReservas();
-  document.getElementById("reserva-form").addEventListener("submit", manejarFormularioReserva);
+  renderCantidadAndamios(); // 🔹 aquí llenamos del 1 al 12
+  document
+    .getElementById("reserva-form")
+    .addEventListener("submit", manejarFormularioReserva);
 });
+
