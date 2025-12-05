@@ -52,7 +52,7 @@ body {
       rgba(0, 59, 139, 0.9),
       rgba(37, 99, 235, 0.7)
     ),
-    url("andamio2.jpg") center/cover no-repeat;
+    url("andamios/andamio2.jpg") center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -220,3 +220,4 @@ body {
   border-radius: 8px;
   margin-bottom: 8px;
 }
+
