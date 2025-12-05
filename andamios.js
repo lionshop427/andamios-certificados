@@ -32,7 +32,7 @@ const DB_ANDAMIOS = [
     descripcion: "Niveladores galvanizados, certificados por la UNI.",
     precioDia: 6.0,
     stock: 40,
-   imagen: "andamios/niveladores.jpg"
+   imagen: "andamios/niveladores.png"
 
   },
   {
@@ -41,7 +41,7 @@ const DB_ANDAMIOS = [
     descripcion: "Escaleras telescópicas para trabajos de pintura y acabados.",
     precioDia: 8.0,
     stock: 40,
-    imagen: "andamios/escalera.jpg"
+    imagen: "andamios/escalera.png"
   }
 ];
 
@@ -186,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("reserva-form");
   form.addEventListener("submit", manejarFormularioReserva);
 });
+
 
 
 
