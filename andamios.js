@@ -32,8 +32,7 @@ const DB_ANDAMIOS = [
     descripcion: "Niveladores galvanizados, certificados por la UNI.",
     precioDia: 6.0,
     stock: 40,
-   imagen: "andamios/niveladores.png"
-
+    imagen: "andamios/niveladores.png"
   },
   {
     id: 5,
@@ -49,9 +48,9 @@ const DB_ANDAMIOS = [
 let DB_RESERVAS = [];
 
 // NÚMERO DE WHATSAPP DONDE LLEGARÁ LA COTIZACIÓN
-const WHATSAPP_NUMBER = "51958799539"; // ← AQUÍ RECIBIRÁS LAS COTIZACIONES
+const WHATSAPP_NUMBER = "51958799539";
 
-// Cargar catálogo de andamios en la página
+// Cargar catálogo de andamios
 function renderAndamios() {
   const lista = document.getElementById("andamios-list");
   const select = document.getElementById("andamioSelect");
@@ -82,7 +81,7 @@ function renderAndamios() {
   });
 }
 
-// Mostrar reservas en el listado
+// Mostrar reservas en pantalla
 function renderReservas() {
   const contenedor = document.getElementById("reservas-list");
   contenedor.innerHTML = "";
@@ -98,7 +97,9 @@ function renderReservas() {
     item.innerHTML = `
       <strong>${reserva.nombre}</strong> – ${reserva.telefono}<br/>
       Andamio: ${reserva.nombreAndamio}<br/>
-      Días: ${reserva.dias} · Total aprox: S/ ${reserva.total.toFixed(2)}
+      Cantidad: ${reserva.cantidad}<br/>
+      Días: ${reserva.dias}<br/>
+      Total aprox: S/ ${reserva.total.toFixed(2)}
     `;
     contenedor.appendChild(item);
   });
@@ -108,18 +109,14 @@ function renderReservas() {
 function manejarFormularioReserva(event) {
   event.preventDefault();
 
-  const nombreInput = document.getElementById("nombre");
-  const telefonoInput = document.getElementById("telefono");
-  const andamioSelect = document.getElementById("andamioSelect");
-  const diasInput = document.getElementById("dias");
+  const nombre = document.getElementById("nombre").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  const andamioId = Number(document.getElementById("andamioSelect").value);
+  const dias = Number(document.getElementById("dias").value);
+  const cantidad = Number(document.getElementById("cantidad").value);
   const mensaje = document.getElementById("mensaje");
 
-  const nombre = nombreInput.value.trim();
-  const telefono = telefonoInput.value.trim();
-  const andamioId = Number(andamioSelect.value);
-  const dias = Number(diasInput.value);
-
-  if (!nombre || !telefono || !andamioId || !dias || dias <= 0) {
+  if (!nombre || !telefono || !andamioId || dias <= 0 || cantidad <= 0) {
     mensaje.textContent = "Por favor, completa todos los campos correctamente.";
     mensaje.style.color = "red";
     return;
@@ -132,22 +129,23 @@ function manejarFormularioReserva(event) {
     return;
   }
 
-  const total = dias * andamio.precioDia;
+  const total = dias * cantidad * andamio.precioDia;
 
-  // REGISTRO EN LA PÁGINA
+  // Registro local en la web
   const nuevaReserva = {
     nombre,
     telefono,
     andamioId,
     nombreAndamio: andamio.nombre,
     dias,
+    cantidad,
     total
   };
 
   DB_RESERVAS.push(nuevaReserva);
   renderReservas();
 
-  // CREACIÓN DEL MENSAJE PARA WHATSAPP
+  // WhatsApp
   const texto = `
 Nueva cotización solicitada
 
@@ -156,37 +154,31 @@ Teléfono: ${telefono}
 
 Equipo solicitado:
 - ${andamio.nombre}
+- Cantidad: ${cantidad} unidad(es)
 - Precio por día: S/ ${andamio.precioDia.toFixed(2)}
 - Días de alquiler: ${dias}
-- Total estimado: S/ ${total.toFixed(2)}
+
+Total estimado: S/ ${total.toFixed(2)}
 
 Por favor, confirmar disponibilidad y coordinar entrega.
-  `;
+`;
 
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`;
-
-  // ENVIAR A TU WHATSAPP
   window.open(url, "_blank");
 
   mensaje.textContent = "Cotización enviada a WhatsApp.";
   mensaje.style.color = "green";
 
-  // LIMPIAR FORMULARIO
-  nombreInput.value = "";
-  telefonoInput.value = "";
-  andamioSelect.value = "";
-  diasInput.value = "1";
+  document.getElementById("nombre").value = "";
+  document.getElementById("telefono").value = "";
+  document.getElementById("andamioSelect").value = "";
+  document.getElementById("dias").value = "1";
+  document.getElementById("cantidad").value = "1";
 }
 
 // Inicializar
 document.addEventListener("DOMContentLoaded", () => {
   renderAndamios();
   renderReservas();
-
-  const form = document.getElementById("reserva-form");
-  form.addEventListener("submit", manejarFormularioReserva);
+  document.getElementById("reserva-form").addEventListener("submit", manejarFormularioReserva);
 });
-
-
-
-
