@@ -8,7 +8,7 @@ const DB_ANDAMIOS = [
     descripcion: "2 laterales, 2 tijerales y 1 plataforma certificada por la UNI.",
     precioDia: 10.0,
     stock: 1000,
-    imagen: "andamio2.jpg"
+    imagen: "andamios/andamio2.jpg"
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const DB_ANDAMIOS = [
     descripcion: "Ideal para interiores y trabajos en alturas menores.",
     precioDia: 8.0,
     stock: 25,
-    imagen: "mediocuerpo.jpg"
+    imagen: "andamios/mediocuerpo.jpg"
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const DB_ANDAMIOS = [
     descripcion: "Ruedas con freno para desplazar andamios de forma segura.",
     precioDia: 8.0,
     stock: 40,
-    imagen: "garuchas.jpg"
+    imagen: "andamios/garuchas.jpg"
   },
   {
     id: 4,
@@ -32,7 +32,7 @@ const DB_ANDAMIOS = [
     descripcion: "Niveladores galvanizados, certificados por la UNI.",
     precioDia: 6.0,
     stock: 40,
-    imagen: "niveladores.png"
+    imagen: "andamios/niveladores.png"
   },
   {
     id: 5,
@@ -40,7 +40,7 @@ const DB_ANDAMIOS = [
     descripcion: "Escaleras telescópicas para trabajos de pintura y acabados.",
     precioDia: 8.0,
     stock: 40,
-    imagen: "escalera.png"
+    imagen: "andamios/escalera.png"
   }
 ];
 
@@ -185,3 +185,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("reserva-form");
   form.addEventListener("submit", manejarFormularioReserva);
 });
+
