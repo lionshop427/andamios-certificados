@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lion Andamios | Alquiler de andamios certificados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="andamios.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🦁 Andamios Galvanizados UNI</div>
+    <nav class="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#andamios">Andamios</a>
+      <a href="#reservar">Reservar</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <h1>Alquiler de Andamios Certificados por la UNI en Huánuco</h1>
+        <p>Andamios tipo Acrow, seguros, resistentes y listos para tu obra.</p>
+        <a href="#andamios" class="btn-primary">Ver catálogo de andamios</a>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO (cargado desde "base de datos" en JS) -->
+    <section id="andamios" class="section">
+      <h2>Catálogo de Andamios</h2>
+      <p class="section-desc">
+        Los siguientes equipos se cargan desde una “base de datos” simulada en JavaScript.
+      </p>
+
+      <div id="andamios-list" class="grid-andamios">
+        <!-- Se llena dinámicamente con app.js -->
+      </div>
+    </section>
+
+    <!-- FORMULARIO DE RESERVA -->
+    <section id="reservar" class="section section-reserva">
+      <h2>Reservar Andamios</h2>
+
+      <form id="reserva-form" class="form-reserva">
+        <div class="field">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" required />
+        </div>
+
+        <div class="field">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" required />
+        </div>
+
+        <div class="field">
+          <label for="andamioSelect">Tipo de andamio</label>
+          <select id="andamioSelect" required>
+            <!-- Opciones se llenan en app.js -->
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="dias">Días de alquiler</label>
+          <input type="number" id="dias" min="1" value="1" required />
+        </div>
+
+        <button type="submit" class="btn-primary">Guardar reserva</button>
+        <p id="mensaje" class="mensaje"></p>
+      </form>
+    </section>
+
+    <!-- LISTADO DE RESERVAS (solo visual, desde JS) -->
+    <section class="section">
+      <h2>Reserva de los andamios galvanizados.</h2>
+      <p class="section-desc">
+        Reserva con toda consfianza tus andamios
+      </p>
+      <div id="reservas-list" class="reservas-list">
+        <!-- Se llena dinámicamente -->
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section section-contacto">
+      <h2>Contacto</h2>
+      <p>📍 Jr. Prolongación Abtao 565 – Huánuco (Referencia: 6 esquinas)</p>
+      <p>📞 958799539 · 926157490</p>
+      <p>📩 lionshopimport@gmail.com</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2025 Lion Andamios – Todos los derechos reservados
+  </footer>
+
+  <script src="andamios.js"></script>
+</body>
+</html>
