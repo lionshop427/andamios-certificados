@@ -17,7 +17,6 @@ const DB_ANDAMIOS = [
     precioDia: 8.0,
     stock: 25,
     imagen: "andamios/mediocuerpo.jpg"
-"
   },
   {
     id: 3,
@@ -26,7 +25,6 @@ const DB_ANDAMIOS = [
     precioDia: 8.0,
     stock: 40,
     imagen: "andamios/garuchas.jpg"
-
   },
   {
     id: 4,
@@ -44,7 +42,6 @@ const DB_ANDAMIOS = [
     precioDia: 8.0,
     stock: 40,
     imagen: "andamios/escalera.jpg"
-
   }
 ];
 
@@ -189,5 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("reserva-form");
   form.addEventListener("submit", manejarFormularioReserva);
 });
+
 
 
